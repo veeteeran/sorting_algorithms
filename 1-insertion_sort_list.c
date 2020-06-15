@@ -13,6 +13,9 @@ void insertion_sort_list(listint_t **list)
 	listint_t *element;
 	listint_t *mover;
 
+	if ((*list)->next == NULL)
+		return;
+
 	sorted_end = *list;
 	mover = sorted_end;
 	element = sorted_end->next;

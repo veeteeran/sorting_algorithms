@@ -7,7 +7,8 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	my_sort(array, size, 0, (int)(size - 1));	
+  if (size > 1)
+    my_sort(array, size, 0, (int)(size - 1));	
 }
 
 /**
@@ -34,9 +35,14 @@ int partition(int *array, size_t size, int low, int high)
 				swap(&array[i], &array[j]);
 				print_array(array, size);
 			}
-/*			swap(&array[i], &array[j]);
-*/		}
+		}
 	}
+        if ((i + 1) != high)
+          {
+            swap(&array[i + 1], &array[high]);
+            print_array(array, size);
+          }
+        return (i + 1);
 }
 
 /**
