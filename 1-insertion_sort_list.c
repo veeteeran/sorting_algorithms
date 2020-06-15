@@ -28,32 +28,29 @@ void insertion_sort_list(listint_t **list)
 			mover = sorted_end;
 			continue;
 		}
-
 		while (element->n < mover->n && mover->prev != NULL && element->prev != NULL)
 		{
-			mover = mover->prev;
-
-			if (mover->prev == NULL && element->n < mover->n)
-			{
-				mover->prev = element;
-				element->prev->next = element->next;
-				element->next->prev = element->prev;
-				element->prev = NULL;
-				element->next = mover;
-				*list = element;
-			}
-			else
-			{
-				element->prev->next = element->next;
-				if (element->next != NULL)
-                        		element->next->prev = element->prev;
-				element->prev = mover;
-				element->next = mover->next;
-				mover->next->prev = element;
-				mover->next = element;
-			}
-			print_list(*list);
+		  mover = mover->prev;
+		  element->prev->next = element->next;
+		  if (element->next != NULL)
+		    element->next->prev = element->prev;
+		  element->prev = mover;
+		  element->next = mover->next;
+		  mover->next->prev = element;
+		  mover->next = element;
+		  print_list(*list);
 		}
+		if (mover->prev == NULL && element->n < mover->n)                                                                                        
+		  {                                                                                                                                         
+		    mover->prev = element;                                                                                                                  
+		    element->prev->next = element->next;                                                                                                    
+		    element->next->prev = element->prev;                                                                                                    
+		    element->prev = NULL;                                                                                                                   
+		    element->next = mover;                                                                                                                  
+		    *list = element;
+		    print_list(*list);
+		  }
+
 		mover = sorted_end;
 		if (sorted_end->next != NULL)
 			element = sorted_end->next;
