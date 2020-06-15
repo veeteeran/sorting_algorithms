@@ -7,13 +7,15 @@
  */
 void quick_sort(int *array, size_t size)
 {
-  if (size > 1)
-      my_sort(array, size, 0, (int)(size - 1));	
+	if (size < 2 || array == NULL)
+		return;
+	my_sort(array, size, 0, (int)(size - 1));
 }
 
 /**
  * partition - implementation of Lomuto partition scheme
  * @array: array to partition
+ * @size: size of array
  * @low: start of sub-array
  * @high: end of sub-array
  *
@@ -22,32 +24,33 @@ void quick_sort(int *array, size_t size)
 int partition(int *array, size_t size, int low, int high)
 {
 	int pivot = array[high];
-        int i = low - 1;
-        int j;
+	int i = low - 1;
+	int j;
 
 	for (j = low; j < high; j++)
 	{
 		if (array[j] < pivot)
 		{
 			i++;
-			if(i != j)
+			if (i != j)
 			{
 				swap(&array[i], &array[j]);
 				print_array(array, size);
 			}
 		}
 	}
-        if ((i + 1) != high)
-          {
-            swap(&array[i + 1], &array[high]);
-            print_array(array, size);
-          }
-        return (i + 1);
+	if ((i + 1) != high)
+	{
+		swap(&array[i + 1], &array[high]);
+		print_array(array, size);
+	}
+	return (i + 1);
 }
 
 /**
  * my_sort - the actual sort
  * @array: array to sort
+ * @size: size of array
  * @low: start of sub-array
  * @high: end of sub-array
  */
@@ -73,8 +76,8 @@ void my_sort(int *array, size_t size, int low, int high)
  */
 void swap(int *a, int *b)
 {
-  int temp = *a;
+	int temp = *a;
 
-  *a = *b;
-  *b = temp;
+	*a = *b;
+	*b = temp;
 }
