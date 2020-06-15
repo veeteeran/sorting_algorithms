@@ -30,8 +30,9 @@ void insertion_sort_list(listint_t **list);
 int partition(int *array, size_t size, int low, int high);
 void my_sort(int *array, size_t size, int low, int high);
 void quick_sort(int *array, size_t size);
-
-
-
+void merge_sort(int *array, size_t size);
+void real_sort(int *array, int *temp, size_t start, size_t end, size_t size);
+void merge(int *array, int *temp, size_t start, size_t mid, size_t end, size_t size);
+void shell_sort(int *array, size_t size);
 
 #endif /* SORT_H */
