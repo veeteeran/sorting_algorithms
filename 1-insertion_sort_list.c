@@ -61,7 +61,8 @@ void reset_ptr(listint_t *element, listint_t *mover)
 {
 	mover->prev = element;
 	element->prev->next = element->next;
-	element->next->prev = element->prev;
+	if (element->next != NULL)
+		element->next->prev = element->prev;
 	element->prev = NULL;
 	element->next = mover;
 }
