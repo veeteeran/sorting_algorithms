@@ -63,3 +63,18 @@ void my_sort(int *array, size_t size, int low, int high)
 		my_sort(array, size, pivot + 1, high);
 	}
 }
+
+/**
+ * swap - swaps two values
+ * @a: first value to swap
+ * @b: second value to swap
+ *
+ * Return: nothing
+ */
+void swap(int *a, int *b)
+{
+  int temp = *a;
+
+  *a = *b;
+  *b = temp;
+}
