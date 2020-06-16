@@ -34,6 +34,6 @@ void cocktail_sort_list(listint_t **list);
 int listint_len(const listint_t *h);
 void swap_node(listint_t *element, listint_t *mover, listint_t **list);
 void rev_swap_node(listint_t *element, listint_t *mover, listint_t **list);
-
+int check_sorted(listint_t **list);
 
 #endif /* SORT_H */

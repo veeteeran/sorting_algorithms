@@ -1,5 +1,5 @@
 #include "sort.h"
-int check_sorted(listint_t **list);
+
 /**
  * cocktail_sort_list - sorts a list using cocktail sort
  * @list: list to sort
@@ -37,8 +37,11 @@ void cocktail_sort_list(listint_t **list)
 			}
 			else
 			{
-				element = mover;
-				mover = mover->next;
+				if (mover->next != NULL)
+				{
+					element = mover;
+					mover = mover->next;
+				}
 			}
 			i++;
 		}
@@ -96,6 +99,7 @@ int listint_len(const listint_t *h)
  * swap_node - swap nodes in list properly
  * @element: the element to compare
  * @mover: pointer moving through list
+ * @list: list to sort
  */
 void swap_node(listint_t *element, listint_t *mover, listint_t **list)
 {
