@@ -1,5 +1,5 @@
 #include "sort.h"
-
+int check_sorted(listint_t **list);
 /**
  * cocktail_sort_list - sorts a list using cocktail sort
  * @list: list to sort
@@ -8,8 +8,12 @@
  */
 void cocktail_sort_list(listint_t **list)
 {
-	int i, j, end, beg = 1, swaps = -1;
+	int i, j, end, sorted, beg = 1, swaps = -1;
 	listint_t *mover, *element;
+
+	sorted = check_sorted(list);
+	if (sorted > 0)
+		return;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
@@ -119,4 +123,25 @@ void rev_swap_node(listint_t *element, listint_t *mover, listint_t **list)
 	element->next = mover;
 	if (element->prev == NULL)
 		*list = element;
+}
+
+/**
+ * check_sorted - checks for a sorted list
+ * @list: list to check
+ *
+ * Return: 1 if sorted 0 otherwise
+ */
+int check_sorted(listint_t **list)
+{
+	listint_t *mover;
+
+	mover = *list;
+	while (mover->next != NULL)
+	{
+		if (mover->n <= mover->next->n)
+			mover = mover->next;
+		else
+			return (0);
+	}
+	return (1);
 }
