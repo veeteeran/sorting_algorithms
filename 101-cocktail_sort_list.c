@@ -8,69 +8,45 @@
  */
 void cocktail_sort_list(listint_t **list)
 {
-	int i, j, end, sorted, beg = 1, swaps = -1;
+	int i, j, end, beg = 1, swaps = -1;
 	listint_t *mover, *element;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
-
-	sorted = check_sorted(list);
-	if (sorted > 0)
+	if (check_sorted(list))
 		return;
-
-	end = listint_len(*list);
-	element = *list;
-	mover = element->next;
+	end = listint_len(*list), element = *list, mover = element->next;
 	while (swaps != 0)
-	{
-		swaps = 0;
-		i = beg;
+	{	swaps = 0, i = beg;
 		while (i < end)
 		{
 			if (element->n > mover->n)
-			{
-				swap_node(element, mover, list);
-				swaps++;
-				print_list(*list);
+			{swap_node(element, mover, list), swaps++, print_list(*list);
 				if (i < end - 1)
 					mover = element->next;
 			}
-			else
-			{
-				if (mover->next != NULL)
-				{
-					element = mover;
-					mover = mover->next;
-				}
-			}
+			else if (mover->next != NULL)
+				element = mover, mover = mover->next;
 			i++;
-		}
-		end--;
-		element = mover;
-		mover = mover->prev;
+		} end--, element = mover, mover = mover->prev;
 		if (mover == NULL)
 			return;
 		j = end;
 		while (j > beg)
 		{
 			if (element->n < mover->n)
-			{
-				rev_swap_node(element, mover, list);
-				swaps++;
-				print_list(*list);
+			{rev_swap_node(element, mover, list), swaps++, print_list(*list);
 				if (j > beg + 1)
 					mover = element->prev;
 			}
 			else
-			{
-				element = mover;
-				mover = mover->prev;
-			}
-			j--;
-		}
-		beg++;
-		element = mover;
-		mover = mover->next;
+			{element = mover;
+				if (mover->prev != NULL)
+					mover = mover->prev;
+				else
+					break;
+			} j--;
+		} beg++, element = mover, mover = mover->next;
 	}
 }
 
