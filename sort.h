@@ -32,7 +32,7 @@ void my_sort(int *array, size_t size, int low, int high);
 void quick_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 int listint_len(const listint_t *h);
-void swap_node(listint_t *element, listint_t *mover);
+void swap_node(listint_t *element, listint_t *mover, listint_t **list);
 void rev_swap_node(listint_t *element, listint_t *mover, listint_t **list);
 
 

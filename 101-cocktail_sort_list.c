@@ -29,7 +29,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (element->n > mover->n)
 			{
-				swap_node(element, mover);
+				swap_node(element, mover, list);
 				swaps++;
 				print_list(*list);
 				if (i < end - 1)
@@ -45,6 +45,8 @@ void cocktail_sort_list(listint_t **list)
 		end--;
 		element = mover;
 		mover = mover->prev;
+		if (mover == NULL)
+			return;
 		j = end;
 		while (j > beg)
 		{
@@ -95,15 +97,19 @@ int listint_len(const listint_t *h)
  * @element: the element to compare
  * @mover: pointer moving through list
  */
-void swap_node(listint_t *element, listint_t *mover)
+void swap_node(listint_t *element, listint_t *mover, listint_t **list)
 {
 	mover->prev = element->prev;
 	element->next = mover->next;
 	if (mover->next != NULL)
 		mover->next->prev = element;
 	mover->next = element;
-	element->prev->next = mover;
+	if (element->prev != NULL)
+		element->prev->next = mover;
 	element->prev = mover;
+
+	if (mover->prev == NULL)
+		*list = mover;
 }
 
 /**
