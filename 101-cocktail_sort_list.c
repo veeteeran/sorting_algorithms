@@ -11,11 +11,11 @@ void cocktail_sort_list(listint_t **list)
 	int i, j, end, sorted, beg = 1, swaps = -1;
 	listint_t *mover, *element;
 
-	sorted = check_sorted(list);
-	if (sorted > 0)
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	sorted = check_sorted(list);
+	if (sorted > 0)
 		return;
 
 	end = listint_len(*list);
