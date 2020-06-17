@@ -30,6 +30,10 @@ void insertion_sort_list(listint_t **list);
 int partition(int *array, size_t size, int low, int high);
 void my_sort(int *array, size_t size, int low, int high);
 void quick_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void real_sort(int *array, int *temp, size_t start, size_t end, size_t size);
+void merge(int *array, int *temp, size_t start, size_t mid, size_t end, size_t size);
+void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 int listint_len(const listint_t *h);
 void swap_node(listint_t *element, listint_t *mover, listint_t **list);
@@ -37,6 +41,4 @@ void rev_swap_node(listint_t *element, listint_t *mover, listint_t **list);
 int check_sorted(listint_t **list);
 int is_sorted(int *array, size_t size);
 int find_max(int *array, size_t size);
-
-
 #endif /* SORT_H */
