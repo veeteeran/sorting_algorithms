@@ -105,7 +105,8 @@ void rev_swap_node(listint_t *element, listint_t *mover, listint_t **list)
 	if (mover->prev != NULL)
 		mover->prev->next = element;
 	mover->prev = element;
-	element->next->prev = mover;
+	if (element->next != NULL)
+		element->next->prev = mover;
 	element->next = mover;
 	if (element->prev == NULL)
 		*list = element;
