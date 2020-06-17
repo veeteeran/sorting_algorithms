@@ -41,4 +41,6 @@ void rev_swap_node(listint_t *element, listint_t *mover, listint_t **list);
 int check_sorted(listint_t **list);
 int is_sorted(int *array, size_t size);
 int find_max(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+
 #endif /* SORT_H */
