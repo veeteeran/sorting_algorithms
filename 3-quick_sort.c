@@ -7,9 +7,15 @@
  */
 void quick_sort(int *array, size_t size)
 {
+	size_t i;
+
 	if (size < 2 || array == NULL)
 		return;
-	my_sort(array, size, 0, (int)(size - 1));
+	for (i = 0; i < size - 1; i++)
+	{
+		if (array[i] > array[i + 1])
+			my_sort(array, size, 0, (int)(size - 1));
+	}
 }
 
 /**
