@@ -13,12 +13,10 @@ void cocktail_sort_list(listint_t **list)
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
-	if (check_sorted(list))
-		return;
 	end = listint_len(*list), element = *list, mover = element->next;
 	while (swaps != 0)
-	{	swaps = 0, i = beg;
-		while (i < end)
+	{	swaps = 0;
+		for (i = beg; i < end; i++)
 		{
 			if (element->n > mover->n)
 			{swap_node(element, mover, list), swaps++, print_list(*list);
@@ -27,25 +25,18 @@ void cocktail_sort_list(listint_t **list)
 			}
 			else if (mover->next != NULL)
 				element = mover, mover = mover->next;
-			i++;
-		} end--, element = mover, mover = mover->prev;
-		if (mover == NULL)
-			return;
-		j = end;
-		while (j > beg)
+		} end--, element = mover;
+		if (mover->prev != NULL)
+			mover = mover->prev;
+		for (j = end; j > beg; j--)
 		{
 			if (element->n < mover->n)
 			{rev_swap_node(element, mover, list), swaps++, print_list(*list);
 				if (j > beg + 1)
 					mover = element->prev;
 			}
-			else
-			{element = mover;
-				if (mover->prev != NULL)
-					mover = mover->prev;
-				else
-					break;
-			} j--;
+			else if (mover->prev != NULL)
+				element = mover, mover = mover->prev;
 		} beg++, element = mover, mover = mover->next;
 	}
 }
